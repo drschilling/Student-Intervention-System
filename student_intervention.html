@@ -563,14 +563,16 @@ Testing set has 95 samples.
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Answer: </strong> The models chosen that I found suitable for the problem were: Support Vector Machines (SVM), Decision Trees(DT) and Naive Bayes (NB). The choice of models was based on the success of these algorithms in studies in the scientific literature as being trustworthy for classification problems. As the data set provided to the problem is not a large sample (only 395 individuals) I tried to choose methods that work well with small data sets but have good performance. We can do a little evaluation of each model as follows:</p>
+<p><strong>Answer: </strong> The models chosen that I found suitable for the problem were: Support Vector Machines (SVM), Decision Trees(DT) and Naive Bayes (NB). We can do a little evaluation of each model as follows:</p>
 <p><strong>1) Support Vector Machines  </strong></p>
 <ul>
-<li><p>General Applications: The SVM is a supervised learning model that generates input-output functions for mapping a set of data that its function can be either a classification function or a regression function. In classification problems, non-linear kernel functions are often used to transform the input data to a high-dimensional space characteristic in which the input data become separable compared with the original input space creating maximum hyperplane margin.SVM has been successfully implemented in many real problems like image classification, bioinformatics and hand-written character recognition.</p>
+<li><p>General Applications: The SVM is a supervised learning model that generates input-output functions for mapping a set of data that its function can be either a classification function or a regression function. In classification problems, non-linear kernel functions are often used to transform the input data to a high-dimensional space characteristic in which the input data become separable compared with the original input space creating maximum hyperplane margin. SVM has been successfully implemented in many real problems like image classification, bioinformatics and hand-written character recognition.</p>
 </li>
 <li><p>Strengths: Some of its advantages are that SVM is very effective in high-dimensional spaces, and in situations when have a non-linear separation problem. With SVM we have the possibility to apply new kernels that allows flexibility for our decision boundaries, leading to a better classification performance.</p>
 </li>
 <li><p>Weaknesses: It does not have good performance when we have heterogenous datasets and many independent features, and datasets with a lot of data.</p>
+</li>
+<li><p>Why I chose: The set of student data has thirty features, which can increase the complexity of the model by the large number of dimensions involved.The choice of the models was based on the success of these algorithms in studies in the literature as being reliable for classification problems. The dataset particularities also influenced the choice of models. We can justify the choice of SVM as a possible model for the way in which it deals with high dimensional data.</p>
 </li>
 </ul>
 <p><strong>2) Decision Trees  </strong></p>
@@ -581,14 +583,16 @@ Testing set has 95 samples.
 </li>
 <li><p>Weaknesses: It has disadvantages as the formation, complexity and size of its trees, which compromises the generalization of the model and can cause overfitting.</p>
 </li>
-</ul>
+<li><p>Why I chose: The choice for decision trees was given primarily by its results are easy to interpret. But to be working with data with a large number of features involved can be tricky sometimes. Decision trees allow us to make a feature selection as the results for the fit of the training set reveals that the top nodes of a decision tree will be the most important variables for the model.</p>
 <p><strong>3) Naive Bayes  </strong></p>
-<ul>
+</li>
 <li><p>General Applications: The Naive Bayes model calculates the probability that an unknown sample belongs to one of the possible classes submitted by the problem, or predict your most likely class. We can consider this model as being  completely based on probabilistic calculation. It is  called "naive", considering that the effect of the value of a feature on a given class is independent of the values of other other features. Naive Bayes is widely used in categorization of journalistic text (in sports, politics, etc.) and text sentiment analysis.</p>
 </li>
 <li><p>Strengths: Between some of its advantages is that with a conditional independence assumption a Naive Bayes classifier can converge quicker than discriminative models having a reduced need of a large set of training data.</p>
 </li>
 <li><p>Weaknesses: The same conditional independence assumption can be a disadvantage when if you have no occurrences of a class label and a feature value together, what will give you a zero frequency-based value probability that affects any posterior probability estimate.</p>
+</li>
+<li><p>Why I chose: The choice by the Naive Bayes model was based on my desire to analyze the performance of a model that has a conditional independence assumption among its features, and can also be justified for we having a relatively small data set (395 individous in total).</p>
 </li>
 </ul>
 
@@ -2555,7 +2559,7 @@ AAAAAAAAAAAAAAAAAEykvwCSYuEFRfZeWgAAAABJRU5ErkJggg==
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Import &#39;gridSearchCV&#39; and &#39;make_scorer&#39;</span>
@@ -2589,8 +2593,6 @@ AAAAAAAAAAAAAAAAAEykvwCSYuEFRfZeWgAAAABJRU5ErkJggg==
 
 <span class="c1"># Get the estimator</span>
 <span class="n">clf</span> <span class="o">=</span> <span class="n">grid_obj</span><span class="o">.</span><span class="n">best_estimator_</span>
-<span class="k">print</span> <span class="n">grid_obj</span><span class="o">.</span><span class="n">best_estimator_e</span>
-
 
 <span class="c1"># Report the final F1 score for training and testing after parameter tuning</span>
 <span class="k">print</span> <span class="s2">&quot;Tuned model has a training F1 score of {:.4f}.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">predict_labels</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">))</span>
@@ -2607,13 +2609,9 @@ AAAAAAAAAAAAAAAAAEykvwCSYuEFRfZeWgAAAABJRU5ErkJggg==
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>SVC(C=1.0, cache_size=200, class_weight=None, coef0=0.0,
-  decision_function_shape=None, degree=3, gamma=10.0, kernel=&apos;rbf&apos;,
-  max_iter=-1, probability=False, random_state=0, shrinking=True,
-  tol=0.001, verbose=False)
-Made predictions in 0.0042 seconds.
+<pre>Made predictions in 0.0045 seconds.
 Tuned model has a training F1 score of 0.8715.
-Made predictions in 0.0013 seconds.
+Made predictions in 0.0020 seconds.
 Tuned model has a testing F1 score of 0.8133.
 </pre>
 </div>
@@ -2660,8 +2658,8 @@ Tuned model has a testing F1 score of 0.8133.
 </tr>
 <tr>
 <td style="text-align:center">with tuned parameters</td>
-<td style="text-align:center">0.0042 seconds</td>
-<td style="text-align:center">0.0013 seconds</td>
+<td style="text-align:center">0.0045 seconds</td>
+<td style="text-align:center">0.0020 seconds</td>
 <td style="text-align:center"><strong>0.8715</strong></td>
 <td style="text-align:center"><strong>0.8133</strong></td>
 </tr>
